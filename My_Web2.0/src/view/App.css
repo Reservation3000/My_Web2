@@ -1,3 +1,151 @@
-.buttom{
-  color: red;
+/* --- 基礎設定 --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* 確保 body 和 html 沒有內建邊距 */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* 防止水平滾動條導致的白邊 */
+}
+
+/* 確保 .app 填滿整個視窗 */
+.app {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+/* --- 背景圖片設定 --- */
+.background-image {
+  /* 1. 固定定位 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  
+  /* 2. 佔滿螢幕 */
+  width: 100vw;   /* 100% 的視窗寬度 */
+  height: 100vh;  /* 100% 的視窗高度 */
+  
+  /* 3. 確保圖片覆蓋且不變形 */
+  object-fit: cover; /* [關鍵] 圖片會自動縮放填滿螢幕，保持比例，超出部分裁剪 */
+  
+  /* 4. 放在最底層 */
+  z-index: -1;      /* 負數可以確保它在所有 z-index 為 0 或正數的內容下方 */
+}
+
+.mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;  
+  height: 100vh; 
+  background-color: rgba(0, 0, 0, 0.381);
+}
+
+
+.top-navbar {
+  position: fixed;   /* [修改] 固定位置 */
+  top: 0;           /* [新增] 貼齊頂部 */
+  left: 0;          /* [新增] 貼齊左側 */
+  width: 100%;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.942);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 20;      /* 確保在內容之上 */
+}
+
+.bottom-navbar {
+  position: fixed; /* 固定位置 */
+  bottom: 0;       /* 貼齊底部 */
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: rgb(75, 75, 75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+/* --- 卡片元件 (wordCard) --- */
+.wordCard {
+  position: absolute;
+  flex-direction: column; /* 強制垂直排列 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  align-items: center;    /* 水平置中 */
+  padding: 20px;
+
+  
+  width: 500px;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  
+  display: flex;
+  flex-direction: column; /* 垂直排版 */
+  align-items: center;    /* 水平置中 */
+  gap: 15px;
+
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* --- 文字與內容 --- */
+.title {
+  color: #333;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.introduceText {
+  color: #444;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.introduceTitle{
+  font-weight: 1000;
+  color: #000000;
+  font-size: 27px;
+  text-align: center;
+}
+
+.statement {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+/* --- 按鈕群組 --- */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.communityButtom {
+  background-color: rgb(21, 21, 21) !important;
+  border-color: rgb(21, 21, 21) !important;
+  color: #ffffff !important;
+  transition: all 0.2s ease !important;
+}
+
+.communityButtom:hover {
+  background-color: rgb(50, 50, 50) !important;
+  border-color: rgb(50, 50, 50) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1) !important;
 }
