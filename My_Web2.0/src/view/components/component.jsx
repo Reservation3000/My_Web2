@@ -4,6 +4,7 @@ import { List } from 'antd';
 import { CloseSquareOutlined } from '@ant-design/icons'
 import { Tabs } from 'antd';
 import { Carousel } from 'antd';
+import { Breadcrumb } from 'antd';
 
 export function SocialButton({ url, icon }) {
   return (
@@ -133,7 +134,7 @@ export function MusicGameCardMainContent({getMusicGame}){
           <iframe
             width="100%" height="100%"
             src={getMusicGame.yturl} title={getMusicGame.title}
-            frameborder="0"
+            frameBorder="0"
               allow="accelerometer; 
                 autoplay; clipboard-write; 
                 encrypted-media; gyroscope; 
@@ -180,13 +181,39 @@ export function MusicGameSidebar({ ytList, setMusicGame }) {
                   wordBreak: "break-all",
                 }}
               >
-                {item.constents}
+                {item.author}
               </div>
             }
           />
         </List.Item>
       )}
     />
+  );
+}
+
+export function MusicGameContect({getMusicGame}){
+  return(
+    <div >
+      <Card className="musicGameContect"
+        variant= {getMusicGame.data}
+        styles={{
+          head: {
+            display: 'none',
+            height: 0,
+            padding: 0,
+            borderBottom: 'none'
+          },
+          body: {
+            padding: '20px',          // 設定內距
+            fontSize: '16px',         // 設定文字大小
+            color: 'black',             // 設定文字顏色
+            marginBottom: '10px'
+          }
+        }}
+      >
+        <p style={{ fontWeight: 200 , textAlign: "left"}}> {getMusicGame.constents}</p>
+      </Card>
+    </div>
   );
 }
 
@@ -204,12 +231,14 @@ export function TopNavbar({setPage}){
             if (key === "2") setPage('art');
             if (key === "3") setPage('musicGame');
             if (key === "4") setPage('about');
+            if (key === "5") setPage('commision');
           }}
           items={[
             { key: "1", label: "Intro" },
             { key: "2", label: "Art" },
             { key: "3", label: "Music game" },
             { key: "4", label: "About" },
+            { key: "5", label: "Commision" }
           ]}
         />
       </div>
@@ -217,3 +246,62 @@ export function TopNavbar({setPage}){
   );
 }
 
+export function CharacterButton({ charactersButton, setCharactersButton }) {
+  return (
+    <div className="CharacterButtonContainer">
+      {charactersButton.map((item) => (
+        <Card className="CharacterButtons"
+          key={item.id} 
+          onClick={() => setCharactersButton(item)} 
+          hoverable
+          style={{ width: '100%', height: '14vh', marginBottom: '1vh' }} 
+          styles={{
+            body: {
+              padding: '0px',
+              display: 'flex',       
+              overflow: 'hidden',    
+              width: '100%',
+              height: '100%',        
+            }
+          }}
+        >
+          <img 
+            className="CharacterButtonPicture"
+            src={item.buttonImg} 
+            alt={item.title} 
+          />
+        </Card>
+      ))}
+    </div>
+  );
+}
+
+export function ShowCharacters({ getCharactersButton }) {
+  // 防禦性檢查，確保資料存在才渲染
+  if (!getCharactersButton) {
+    return <div className="placeholder">請選擇一位角色</div>;
+  }
+
+  return (
+    <>
+      <div>
+        <h1 className="aboutName" >{getCharactersButton.title}</h1>
+          <Breadcrumb 
+            className="aboutKerwolds" 
+            items={getCharactersButton.keywords.map(word => ({ title: word }))} 
+          />
+        <h2 className="aboutIntroduction" >{getCharactersButton.introduce}</h2>
+        <p className="aboutContect">{getCharactersButton.contect}</p>
+        <img 
+          src={getCharactersButton.img} // 這裡會讀取完整物件中的主圖片
+          alt={getCharactersButton.title} 
+          className="CharacterImage " 
+        />
+      </div>
+
+      <div>
+        
+    </div>
+  </>
+  );
+}
