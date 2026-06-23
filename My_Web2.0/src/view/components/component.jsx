@@ -277,14 +277,9 @@ export function CharacterButton({ charactersButton, setCharactersButton }) {
 }
 
 export function ShowCharacters({ getCharactersButton }) {
-  // 防禦性檢查，確保資料存在才渲染
-  if (!getCharactersButton) {
-    return <div className="placeholder">請選擇一位角色</div>;
-  }
-
   return (
     <>
-      <div>
+      <div className = "aboutTextContainer">
         <h1 className="aboutName" >{getCharactersButton.title}</h1>
           <Breadcrumb 
             className="aboutKerwolds" 
@@ -292,15 +287,15 @@ export function ShowCharacters({ getCharactersButton }) {
           />
         <h2 className="aboutIntroduction" >{getCharactersButton.introduce}</h2>
         <p className="aboutContect">{getCharactersButton.contect}</p>
+      <div/>
+
+      <div className="CharacterImageContainer ">
         <img 
           src={getCharactersButton.img} // 這裡會讀取完整物件中的主圖片
           alt={getCharactersButton.title} 
-          className="CharacterImage " 
+          className = "classCharacterImage"
         />
       </div>
-
-      <div>
-        
     </div>
   </>
   );

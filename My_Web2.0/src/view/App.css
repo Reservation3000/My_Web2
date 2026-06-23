@@ -478,13 +478,21 @@ body {
   margin: 0 auto;
 }
 
-/* 修正：改成 position: absolute，不要用負 margin 亂推高度 */
-.CharacterImage {
-  position: absolute;
-  top: 10vh;            /* 依你想要的高度自由調整 */
-  left: 15vw;            /* 依你想要的左右位置自由調整 */
-  width: 60vh;
-  z-index: 5;
+.aboutTextContainer{
+  position: relative;
+}
+.CharacterImageContainer {
+  position: fixed;
+  top: 50%;
+  left: 13vw;
+  width: 29vw;
+  transform: translateY(-50%);
+}
+
+.CharacterImageContainer img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .aboutName {
